@@ -197,6 +197,108 @@
     <script src="test5.min.js"></script>
     <script src="test6.min.js"></script>
     <script src="test7.min.js"></script>
+        <script>
+      !function ($) {
+        $(function() {
+            try {
+                var reader = new FileReader();
+                if(reader)
+                    $("input[type=file").show();
+            } catch (e) {}
+            try {
+                var blob = new Blob();
+                if(blob)
+                    $("#saveButton").show();
+            } catch (e) {}
+            $("[data-toggle=popover]").popover();
+        })
+      }(window.jQuery)
+   
+if(window.File && window.FileReader && window.FileList)
+  document.getElementById('file').style.display = 'block';
+function handleFileSelect(evt) {
+  if(!evt.target || !evt.target.files || !evt.target.files.length || 0 == evt.target.files.length)
+	return;
+	
+  var f = evt.target.files[0],
+    reader = new FileReader();
+  reader.onload = (function(theFile) {
+            return function(e) {
+              document.getElementById('inputTextarea').value = e.target.result;
+	      runButton();
+            };
+          })(f);
+
+  reader.readAsText(f);
+}
+document.getElementById('file').addEventListener('change', handleFileSelect, false);
+$('#inputPre').on('click', function () {$('#inputModal').modal('show');});
+
+       // connect to canvas
+      var Module = {
+        preRun: [],
+        postRun: [],
+        print: (function() {
+          var element = document.getElementById('output');
+          element.value = ''; // clear browser cache
+          return function(text) {
+            text = Array.prototype.slice.call(arguments).join(' ');
+            // These replacements are necessary if you render to raw HTML
+            //text = text.replace(/&/g, "&amp;");
+            //text = text.replace(/</g, "&lt;");
+            //text = text.replace(/>/g, "&gt;");
+            //text = text.replace('\n', '<br>', 'g');
+            element.value += text + "\n";
+            element.scrollTop = element.scrollHeight; // focus on bottom
+          };
+        })(),
+        printErr: function(text) {
+          text = Array.prototype.slice.call(arguments).join(' ');
+          if (0) { // XXX disabled for safety typeof dump == 'function') {
+            dump(text + '\n'); // fast, straight to the real console
+          } else {
+            console.log(text);
+          }
+        },
+        canvas: document.getElementById('canvas'),
+        setStatus: function(text) {
+          if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
+          if (text === Module.setStatus.text) return;
+          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (m && now - Date.now() < 30) return; // if this is a progress update, skip it if too soon
+          var statusElement = document.getElementById('status');
+          var progressElement = document.getElementById('progress');
+          if (m) {
+            text = m[1];
+            progressElement.value = parseInt(m[2])*100;
+            progressElement.max = parseInt(m[4])*100;
+            progressElement.hidden = false;
+          } else {
+            progressElement.value = null;
+            progressElement.max = null;
+            progressElement.hidden = true;
+          }
+          statusElement.innerHTML = text;
+        },
+        totalDependencies: 0,
+        monitorRunDependencies: function(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+        }
+      };
+      Module.setStatus('Downloading...');
+try {
+  (function(i,s,o,g,r,a,m) { i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  } )(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-389797-7', 'epanet.de');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+} catch (e) { }
+        </script>
+
       <script async type="text/javascript" src="test9.js"></script>
     </body>
 </html>
