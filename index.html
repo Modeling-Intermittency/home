@@ -1,235 +1,227 @@
-
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-      <meta charset="utf-8"/>
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <!-- See ../COPYING for licensing details -->
-    <title>epanet.js</title>
-    <link rel="canonical" href="test1.js" />
-   <script src="test2.js"></script>
-     <script type="text/javascript" src="test3.js"></script>
-     
-      <!-- Bootstrap header -->
-     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-     <link href="test3.min.css" rel="stylesheet"/>
-     
-     <link rel="stylesheet" href="test4.css" />
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- HEAD SECTION -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>Free Bootstrap Parallax Template</title>
+    <!--GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!--BOOTSTRAP MAIN STYLES -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!--FONTAWESOME MAIN STYLE -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <!--CUSTOM STYLE -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+    <!--END HEAD SECTION -->
+<body>   
 
-  </head>
-   <body>    
-     <!-- Modal input -->
-     <div id="inputModal" class="modal fade" tabindex="-1" role="dialog">
-         <div class="modal-dialog">
-             <div class="modal-content">
-         <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-             <h3 id="myModalLabel">Edit EPANET Model</h3>
-         </div>
-         <div class="modal-body">
+     <!-- NAV SECTION -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Converting INP files to simulate as if they were in India</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#header-section">HOME</a></li>
+                </ul>
+            </div>
+           
         </div>
-        <div class="modal-footer">
-             <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-             <button class="btn btn-primary" onclick="runButton()">Save changes</button>
-         </div>
-             </div>
-         </div>
-     </div>
+    </div>
+     <!--END NAV SECTION -->
+     <!-- HEADER SECTION -->
+    <div id="header-section" >
+          <div class="container">
+        
+            <div class="row main-top-margin">
+                <div class="col-md-6 col-md-offset-3">
+
+                    <div class="text-center">
+                      
+                            <br />                            
+                       
+                    </div>
+                </div>
+            </div>
+                  <div class="row main-low-margin">
+                <div class="col-md-12">
+
+                    <div class="text-center">
+                        <h2 class="head-line" >A Website for David Taylor</h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
        
+    </div> 
+      <!--END HEADER SECTION -->
+   
+     <!-- ABOUT SECTION -->
+      <div id="about-section" class="section" >
+        <div class="container" >
+          
+               
+            <div class="row main-low-margin">
+                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1" >
+                    <h2>About</h2>
+                    <h5>
+                    India's water pipes don't function in the same way that America's do. Therefore, EPANET, the program used to simulate the 
+                    flow of water in pipes shouldn't have to treat India's INP files in the same way that it treats America's. This program works
+                    to fix this problem. Simply upload a file below, and our program will edit the inp file and give you a new one that 
+                    more accurately models what it would be like in India. 
+                    </h5>
+                    <h4> Upload your files here:</h4>
+                    <h4 onload = "myFunction()"> 
+                    <input type="file" id="myFile" multiple size="50" onchange="myFunction()">
 
-
-     <div id="legend">
-     </div>
- 
-     <div class="container marketing">
-       <div id="ad">
- 
-       </div>
-       <div class="row">
-         <div class="col-lg-6" id="inputContainer">
- 
-           <h2 class="">Input
-               <button type="button" class="btn btn-default" data-content="Select File-&gt;Export-&gt;Network... in EPANET to save INP files. If opening does not work, open in text editor, then copy and paste." title="" data-toggle="popover" data-original-title="INP file input">
-                 <span class="glyphicon glyphicon-info-sign"></span>
-             </button>
-           </h2>
-             
-           <div class="well well-sm" id="inputButtons">
-               <input type="file" id="file" style="display: none" data-toggle="tooltip" title="File is kept locally in your browser. It is not sent to the server."/> 
-               <button id="saveButton" class="btn" type="button" role="button" onclick="saveButton()" data-toggle="tooltip" title="Save model in INP format.">Save</button>              
-               <button href="#inputModal" type="button" role="button" class="btn" data-toggle="modal">Edit</button>
-           </div>
-            <pre id="inputPre" data-toggle="tooltip" title="Click to edit">
-           </pre>          
-        </div><!-- /.col-lg-8 -->
-        <div class="col-lg-6" id="analysisContainer">
-          <h2>Analysis</h2>
-           <div class="well well-sm well-analysis">
-               <span id="status">
-                   <span class="label label-success">Success</span>
-              </span>	   
-       Time
-              <select id="time" onchange="epanetjs.renderAnalysis()">
-                   <option>1</option>
-               </select>
- 	      &nbsp;Node
-               <select id="nodeResult" onchange="epanetjs.renderAnalysis()">
-		  <option>Demand</option>
- 		  <option>Head</option>
-                   <option>Pressure</option>
-               </select>
- 	      &nbsp;Link
-               <select id="linkResult" onchange="epanetjs.renderAnalysis()">
-                   <option>Flow</option>
- 		  <option>Velocity</option>
- 		  <option>Headloss</option>
-               </select>
-           </div>         
-          <pre id="output"></pre>
-        </div><!-- /.col-lg-8 -->        
-      </div><!-- /.row -->
- 
-       
-
-     </div><!-- /.container -->
- 
-     <!-- About modal -->
-     <div id="about" class="modal fade">
-         <div class="modal-dialog">
-             <div class="modal-content">
-                 <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                     <h4 class="modal-title">epanet.js 2.0.12.4</h4>
-                 </div>
-                 <div class="modal-footer">
-                     <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">OK</button>                    
-                 </div>
-             </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-     </div><!-- /.modal -->
- 
-     <!-- progress modal -->
-    <div id="working" class="modal fade">        <div class="modal-dialog">
-            <div class="modal-content">
-                 <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                     <h4 class="modal-title"><span class="glyphicon glyphicon-cog"></span> EPANET analysis in progress</h4>
-                 </div>
-                 <div class="modal-body">
-                     <p><span class="glyphicon glyphicon-time"></span> Please wait...</p>
-                 </div>
-                 <div class="modal-footer">
-                     <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">OK</button>                    
-                 </div>
-            </div><!-- /.modal-content -->
-         </div><!-- /.modal-dialog -->
-     </div><!-- /.modal -->
-     
- 
-     <script src="test5.min.js"></script>
-     <script src="test6.min.js"></script>
-     <script src="test7.min.js"></script>
-     <script>
-       !function ($) {
-         $(function() {
-             try {
-                var reader = new FileReader();
-                if(reader)
-                    $("input[type=file").show();
-            } catch (e) {}
-            try {
-                var blob = new Blob();
-                if(blob)
-                     $("#saveButton").show();
-             } catch (e) {}
-             $("[data-toggle=popover]").popover();
-         })
-       }(window.jQuery)
+                    <p id="demo"></p>
     
- if(window.File && window.FileReader && window.FileList)
-   document.getElementById('file').style.display = 'block';
- function handleFileSelect(evt) {
-   if(!evt.target || !evt.target.files || !evt.target.files.length || 0 == evt.target.files.length)
- 	return;
- 	
-   var f = evt.target.files[0],
-     reader = new FileReader();
-   reader.onload = (function(theFile) {
-             return function(e) {
-              document.getElementById('inputTextarea').value = e.target.result;
- 	      runButton();
-            };
-          })(f);
+                    <script>
+                    function myFunction(){
+                    var x = document.getElementById("myFile");
+                    var txt = "";
+                    if ('files' in x) {
+                    if (x.files.length == 0) {
+                    txt = "Select one file please.";
+                    } else {
+                    for (var i = 0; i < x.files.length; i++) {
+                        txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                    var file = x.files[i];
+                    if ('name' in file) {
+                    txt += "name: " + file.name + "<br>";
+                    }   
+                    if ('size' in file) {
+                        txt += "size: " + file.size + " bytes <br>";
+                    }
+                    }
+                    }
+                    }
+                    else {
+                    if (x.value == "") {
+                    txt += "Select one or more files.";
+                    } else {
+                    txt += "The files property is not supported by your browser!";
+                    txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of                      the selected file instead.
+                    }
+                    }
+                    document.getElementById("demo").innerHTML = txt;
+                    }
+                        
+                    
+                    
+                    
+                    </script>
+                    </h4>
+                        
+                    <button onclick="ble()">Let's go!</button>
+
+                    <p id = "goo"></p>
+
+                    <script>
+                        var ble = function (){
+                        var txt = "meh";   
+                        document.getElementById("goo").innerHTML = txt;
+                    }
+
+                    </script>
+                    
+                </div>
+            </div>
+           
+            
+        </div>
+    </div>
+
+    <div class="space-bottom"></div>
+        <!--END ABOUT SECTION -->
+    
+    <!--CONTACT SECTION -->
  
-   reader.readAsText(f);
- }
- document.getElementById('file').addEventListener('change', handleFileSelect, false);
- $('#inputPre').on('click', function () {$('#inputModal').modal('show');});
- 
-        // connect to canvas
-      var Module = {
-        preRun: [],
-         postRun: [],
-         print: (function() {
-           var element = document.getElementById('output');
-           element.value = ''; // clear browser cache
-           return function(text) {
-             text = Array.prototype.slice.call(arguments).join(' ');
-             // These replacements are necessary if you render to raw HTML
-            //text = text.replace(/&/g, "&amp;");
-             //text = text.replace(/</g, "&lt;");
-             //text = text.replace(/>/g, "&gt;");
-             //text = text.replace('\n', '<br>', 'g');
-             element.value += text + "\n";
-             element.scrollTop = element.scrollHeight; // focus on bottom
-          };
-        })(),
-        printErr: function(text) {
-          text = Array.prototype.slice.call(arguments).join(' ');
-          if (0) { // XXX disabled for safety typeof dump == 'function') {
-            dump(text + '\n'); // fast, straight to the real console
-          } else {
-            console.log(text);
-          }
-        },
-        canvas: document.getElementById('canvas'),
-        setStatus: function(text) {
-          if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
-          if (text === Module.setStatus.text) return;
-          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
-          var now = Date.now();
-          if (m && now - Date.now() < 30) return; // if this is a progress update, skip it if too soon
-          var statusElement = document.getElementById('status');
-           var progressElement = document.getElementById('progress');
-          if (m) {
-             text = m[1];
-             progressElement.value = parseInt(m[2])*100;
-            progressElement.max = parseInt(m[4])*100;
-            progressElement.hidden = false;
-          } else {
-             progressElement.value = null;
-             progressElement.max = null;
-             progressElement.hidden = true;
-           }
-           statusElement.innerHTML = text;
-         },
-         totalDependencies: 0,
-         monitorRunDependencies: function(left) {
-           this.totalDependencies = Math.max(this.totalDependencies, left);
-           Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
-         }
-       };
-       Module.setStatus('Downloading...');
- try {
-   (function(i,s,o,g,r,a,m) { i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-   } )(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-   ga('create', 'UA-389797-7', 'epanet.de');
-   ga('set', 'anonymizeIp', true);
-   ga('send', 'pageview');
- } catch (e) { }
-         </script>
-       <script async type="text/javascript" src="test9.js"></script>
-     </body>
-  </html>
+     <div class="space-top"></div>
+        <div class="container" >
+                       <div class="row">
+                <div class="col-md-12  col-sm-12 ">
+                    <div class="col-md-6  col-sm-12" >
+                        <h3>Contact Information</h3>
+                        <hr />
+                        <p>
+                        33 Massachusetts Avenue<br />
+                            Cambridge, MA<br />                          
+                        Massachusetts Institute of Technology<br />
+                        Email: dtaylor@mit.edu, papostolicas18@nobles.edu<br />
+                            </p>
+                      
+                    </div>
+                    <div class="col-md-6  col-sm-12" >
+                        <h3>Questions? Write Us. </h3>
+                        <hr />
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required="required" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required="required" placeholder="Email address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <textarea name="message" id="message" required="required" class="form-control" rows="3"  placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+             <!-- ./ Row Content-->
+        </div>
+   <div class="space-top"></div>
+    <!--END CONTACT SECTION --> 
+
+    
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY LIBRARY -->
+    <script src="assets/js/jquery.js"></script>
+    <!-- CORE BOOTSTRAP LIBRARY -->
+    <script src="assets/js/bootstrap.min.js"></script>
+     <!-- PARALLAX SCRIPTS-->
+     <script src="assets/js/scrolly-master/jquery.scrolly.js"></script>
+       <!-- CUSTOM SCRIPT-->  
+    <script src="assets/js/custom.js"></script>
+    
+</body>
+</html>
