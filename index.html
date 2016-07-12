@@ -18,11 +18,11 @@
     <!--GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <!--BOOTSTRAP MAIN STYLES -->
-    <link href="bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!--FONTAWESOME MAIN STYLE -->
-    <link href="font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
     <!--CUSTOM STYLE -->
-    <link href="style.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -137,18 +137,57 @@
                     </script>
                     </h4>
                         
-                    <button onclick="ble()">Let's go!</button>
-
-                    <p id = "goo"></p>
-
+                    
+                    <h4> Upload a .txt file here. INP files can be converted simply by copied and pasted into notepad (on windows) or textedit (mac) </h4>
+                    <input type='file' accept='text/plain' onchange='openFile(event)'><br>
+                    <p id="meep"></p>
+                    <img id='output'>
                     <script>
-                        var ble = function (){
-                        var txt = "meh";   
-                        document.getElementById("goo").innerHTML = txt;
-                    }
-
+                    var text = "num num num";
+                    var openFile = function(event) {
+                            var input = event.target;
+                            var reader = new FileReader();
+                            reader.onload = function(){
+                            text = reader.result;
+                            document.getElementById("meep").innerHTML = text;
+                        };
+                        reader.readAsText(input.files[0]);
+                        };
                     </script>
                     
+                    <textarea id="textbox">Type something here</textarea> <button id="create">Create file</button> <a download="info.txt" id="downloadlink"                         style="display: none">Download</a>
+                    
+
+                    <script>
+                
+                     (function () {
+                    var textFile = null,
+                    makeTextFile = function (text) {
+                    var data = new Blob([text], {type: 'text/plain'});
+
+                    // If we are replacing a previously generated file we need to
+                    // manually revoke the object URL to avoid memory leaks.
+                    if (textFile !== null) {
+                        window.URL.revokeObjectURL(textFile);
+                    }
+
+                    textFile = window.URL.createObjectURL(data);
+
+                    return textFile;
+                    };
+
+
+                    var create = document.getElementById('create'),
+                    textbox = document.getElementById('textbox');
+
+                    create.addEventListener('click', function () {
+                    var link = document.getElementById('downloadlink');
+                    link.href = makeTextFile(text);
+                    link.style.display = 'block';
+                    }, false);
+                    })(); 
+                    </script>
+
                 </div>
             </div>
            
@@ -215,13 +254,13 @@
     
     <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY LIBRARY -->
-    <script src="jquery.js"></script>
+    <script src="assets/js/jquery.js"></script>
     <!-- CORE BOOTSTRAP LIBRARY -->
-    <script src="bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
      <!-- PARALLAX SCRIPTS-->
-     <script src="jquery.scrolly.js"></script>
+     <script src="assets/js/scrolly-master/jquery.scrolly.js"></script>
        <!-- CUSTOM SCRIPT-->  
-    <script src="custom.js"></script>
+    <script src="assets/js/custom.js"></script>
     
 </body>
 </html>
