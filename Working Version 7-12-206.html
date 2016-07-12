@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<!-- Majority of website structure is modified from http://www.free-css.com/free-css-templates/page199/bs-parallax and their template -->
+
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- HEAD SECTION -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title> Convert your INP Files to Simulate India's Water Systems</title>
+    <!--GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!--BOOTSTRAP MAIN STYLES -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!--FONTAWESOME MAIN STYLE -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <!--CUSTOM STYLE -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+    <!--END HEAD SECTION -->
+<body>   
+
+     <!-- NAV SECTION -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">A Website by David Taylor and Paul Apostolicas</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#header-section">HOME</a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+     <!--END NAV SECTION -->
+     <!-- HEADER SECTION -->
+    <div id="header-section" >
+          <div class="container">
+        
+            <div class="row main-top-margin">
+                <div class="col-md-6 col-md-offset-3">
+
+                    <div class="text-center">
+                      
+                            <br />                            
+                       
+                    </div>
+                </div>
+            </div>
+                  <div class="row main-low-margin">
+                <div class="col-md-12">
+
+                    <div class="text-center">
+                        <h4 class="head-line" > Simulating India's Water Systems</h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div> 
+      <!--END HEADER SECTION -->
+   
+     <!-- ABOUT SECTION -->
+      <div id="about-section" class="section" >
+        <div class="container" >
+          
+               
+            <div class="row main-low-margin">
+                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1" >
+                    <h2>They are Different</h2>
+                    <h5>
+                    India's water pipes don't function in the same way that America's do. Therefore, EPANET, the program used to simulate the 
+                    flow of water in pipes shouldn't have to treat India's INP files in the same way that it treats America's. This program works
+                    to fix this problem. Simply upload a file below, and our program will edit the inp file and give you a new one that 
+                    more accurately models what it would be like in India. 
+                    </h5>
+                        
+                    
+                    <h5> Please upload a .txt file below. If you run a Windows Operating System, INP files can be converted to .txt files by simply being copied and pasted into notepad. If you run are running a Mac Operating System open TextEdit and simply press "Save As..." </h5>
+                    <input type='file' accept='text/plain' onchange='openFile(event)'><br>
+                    <p id="meep"></p>
+                    <img id='output'>
+                    <script>
+                    /*
+                    ##########################################  #############################################
+                    
+                    ######################################################################################### */
+                    var MASTER_TEXT = "";    // this will be the large piece of text
+                    /* #########################################################################################
+                    /* the openFile function is an imitation of that displayed on http://www.javascripture.com/FileReader */
+                            var openFile = function(event) {
+                            var input = event.target;
+                            var reader = new FileReader();
+                            reader.onload = function(){
+                            text = reader.result;
+                            document.getElementById("meep").innerHTML = MASTER_TEXT;
+                        };
+                        reader.readAsText(input.files[0]);
+                        };
+                    </script>
+                    
+                    <textarea id="textbox">Please type 'execute' and press 'create'</textarea> <button id="create">Create file</button> <a download="info.txt"                       id="downloadlink" style="display: none">Download</a>
+                    
+
+                    <script>
+                        
+                 /*   #########################################################################################
+                    
+                    NOW WHAT WE HAVE TO DO IS TO EDIT MASTER_TEXT --> ONCE MASTER_TEXT IS EDITED, WE ARE GOOD TO GO!
+                    
+                
+                    ######################################################################################### */
+                        
+                    
+
+                 /* following code was inspired by 'uselesscode' and his/her response on http://stackoverflow.com/questions/8178825/create-text-file-in-                             javascript */
+                    
+                        
+                     (function () {
+                    var textFile = null,
+                    makeTextFile = function (MASTER_TEXT) {
+                    var data = new Blob([text], {type: 'text/plain'});
+
+                    // If we are replacing a previously generated file we need to
+                    // manually revoke the object URL to avoid memory leaks.
+                    if (textFile !== null) {
+                        window.URL.revokeObjectURL(textFile);
+                    }
+
+                    textFile = window.URL.createObjectURL(data);
+
+                    return textFile;
+                    };
+
+
+                    var create = document.getElementById('create'),
+                    textbox = document.getElementById('textbox');
+
+                    create.addEventListener('click', function () {
+                    var link = document.getElementById('downloadlink');
+                    link.href = makeTextFile(MASTER_TEXT);
+                    link.style.display = 'block';
+                    }, false);
+                    })(); 
+                    </script>
+
+                </div>
+            </div>
+           
+            
+        </div>
+    </div>
+
+    <div class="space-bottom"></div>
+        <!--END ABOUT SECTION -->
+    
+    <!--CONTACT SECTION -->
+ 
+     <div class="space-top"></div>
+        <div class="container" >
+                       <div class="row">
+                <div class="col-md-12  col-sm-12 ">
+                    <div class="col-md-6  col-sm-12" >
+                        <h3>Contact Information</h3>
+                        <hr />
+                        <p>
+                        33 Massachusetts Avenue<br />
+                            Cambridge, MA<br />                          
+                        Massachusetts Institute of Technology<br />
+                        Email: dtaylor@mit.edu, papostolicas18@nobles.edu<br />
+                            </p>
+                      
+                    </div>
+                    <div class="col-md-6  col-sm-12" >
+                        <h3>Questions? Write Us. </h3>
+                        <hr />
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required="required" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" required="required" placeholder="Email address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <textarea name="message" id="message" required="required" class="form-control" rows="3"  placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div> 
+                    
+                </div>
+            </div>
+             <!-- ./ Row Content-->
+        </div>
+   <div class="space-top"></div>
+    <!--END CONTACT SECTION --> 
+
+    
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- also courtesy of http://www.free-css.com/free-css-templates/page199/bs-parallax -->
+    <!-- CORE JQUERY LIBRARY -->
+    <script src="assets/js/jquery.js"></script>
+    <!-- CORE BOOTSTRAP LIBRARY -->
+    <script src="assets/js/bootstrap.min.js"></script>
+     <!-- PARALLAX SCRIPTS-->
+     <script src="assets/js/scrolly-master/jquery.scrolly.js"></script>
+       <!-- CUSTOM SCRIPT-->  
+    <script src="assets/js/custom.js"></script>
+    
+</body>
+</html>
